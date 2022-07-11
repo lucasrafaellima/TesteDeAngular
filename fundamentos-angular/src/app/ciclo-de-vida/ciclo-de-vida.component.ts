@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ciclo-de-vida.component.css']
 })
 export class CicloDeVidaComponent implements OnInit {
-
-  constructor() { }
+  horario = new Date();
+  timer: any = null!;
 
   ngOnInit(): void {
+    console.log("O evento onInit disparou");
+    this.timer = setInterval(() => this.horario = new Date(), 1000);    
   }
 
 }
