@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-ciclo-de-vida',
@@ -8,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class CicloDeVidaComponent implements OnInit {
   horario = new Date();
   timer: any = null!;
+  @Input() texto = "";
 
   ngOnInit(): void {
     console.log("O evento onInit disparou");
     this.timer = setInterval(() => this.horario = new Date(), 1000);    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("O evento onChanges disparou com as seguintes mudanças " + changes);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 
 }
